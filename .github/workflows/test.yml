@@ -1,0 +1,23 @@
+name: Test Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Check HTML File
+        run: test -f index.html
+
+      - name: Test HTML Content
+        run: grep -q "Hello GitHub Actions" index.html
+
+      - name: Test Successful
+        run: echo "All tests passed!"

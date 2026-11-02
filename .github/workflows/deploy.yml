@@ -1,0 +1,26 @@
+name: Deploy Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Prepare Deployment
+        run: |
+          mkdir -p build
+          cp index.html build/
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-build
+          path: build/
+
+      - name: Deployment Status
+        run: echo "Deployment artifact created successfully"

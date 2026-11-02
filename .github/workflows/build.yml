@@ -1,0 +1,24 @@
+name: Build Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Check Project Files
+        run: ls -la
+
+      - name: Build Application
+        run: |
+          echo "Building application..."
+          mkdir -p build
+          cp index.html build/
+          echo "Build completed successfully"
